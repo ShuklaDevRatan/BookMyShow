@@ -50,7 +50,7 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    public List<MovieDto> serarchMovie(String title){
+    public List<MovieDto> searchMovie(String title){
         List<Movie> movies = movieRepository.findByTitleContaining(title);
         return movies.stream()
                 .map(this::mapToDto)
@@ -72,7 +72,7 @@ public class MovieService {
         return mapToDto(updatedMovie);
     }
 
-    public void DeleteMovie(Long id){
+    public void deleteMovie(Long id){
         Movie movie = movieRepository.findById(id)
                 .orElseThrow(()->new ResourcesNotFoundException("Movie not found with this " + id));
         movieRepository.delete(movie);

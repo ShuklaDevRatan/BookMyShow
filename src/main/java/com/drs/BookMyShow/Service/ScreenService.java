@@ -25,7 +25,7 @@ public class ScreenService {
     public ScreenDto createScreen(ScreenDto screenDto){
         Screen screen = mapToEntity(screenDto);
         Screen savedScreen = screenRepository.save(screen);
-        return mapToDto(savedScreen);
+        return mapToDto(screen);
     }
 
 

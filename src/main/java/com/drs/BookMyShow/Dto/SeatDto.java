@@ -1,5 +1,6 @@
 package com.drs.BookMyShow.Dto;
 
+import com.drs.BookMyShow.Model.Screen;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,4 +14,5 @@ public class SeatDto {
     private String seatNumber;
     private String seatType;
     private Double basePrice;
+    private ScreenDto screen;
 }

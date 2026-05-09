@@ -24,7 +24,7 @@ public class Booking {
     private String bookingNumber;
 
     @Column(nullable = false)
-    private LocalDateTime bookkingTime;
+    private LocalDateTime bookingTime;
 
     @ManyToOne
     @JoinColumn(name = "user_id" , nullable = false)
@@ -38,7 +38,7 @@ public class Booking {
     private String status; //Confirm , Pending , Cancel
 
     @Column(nullable = false)
-    private Double totelAmount;
+    private Double totalAmount;
 
     @OneToMany(mappedBy = "booking",cascade = CascadeType.ALL)
     private List<ShowSeat> showSeats;

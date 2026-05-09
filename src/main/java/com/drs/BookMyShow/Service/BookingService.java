@@ -65,9 +65,9 @@ public class BookingService {
         Booking booking = new Booking();
         booking.setUser(user);
         booking.setShow(show);
-        booking.setBookkingTime(LocalDateTime.now());
+        booking.setBookingTime(LocalDateTime.now());
         booking.setStatus("CONFIRMED");
-        booking.setTotelAmount(totalAmount);
+        booking.setTotalAmount(totalAmount);
         booking.setBookingNumber(UUID.randomUUID().toString());
         booking.setPayment(payment);
 
@@ -156,9 +156,9 @@ public class BookingService {
         BookingDto bookingDto = new BookingDto();
         bookingDto.setId(booking.getId());
         bookingDto.setBookingNumber(booking.getBookingNumber());
-        bookingDto.setBookingTime(booking.getBookkingTime());
+        bookingDto.setBookingTime(booking.getBookingTime());
         bookingDto.setStatus(booking.getStatus());
-        bookingDto.setTotalAmount(booking.getTotelAmount());
+        bookingDto.setTotalAmount(booking.getTotalAmount());
 
         //user
         UserDto userDto = new UserDto();

@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ShowSeatRepository extends JpaRepository<ShowSeat,Long> {
 
-    List<ShowSeat> findByMovieId(Long movieId);
+    List<ShowSeat> findByShowId(Long showId);
 
     List<ShowSeat> findByShowIdAndStatus(Long showId , String status);
 

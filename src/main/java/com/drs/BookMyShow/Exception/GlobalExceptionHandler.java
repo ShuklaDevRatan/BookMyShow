@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourcesNotFoundException.class)
     public ResponseEntity<?> resourceNotFoundException(ResourcesNotFoundException ex, WebRequest request){
         ErrorResponse errorDetails = new ErrorResponse(
-                (Data) new Date(),
+                new Date(),
                 HttpStatus.NOT_FOUND.value(),
                 "Not Found",
                 ex.getMessage(),
@@ -27,7 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(SeatUnavailableException.class)
     public ResponseEntity<?> seatUnavailableException(SeatUnavailableException ex, WebRequest request){
         ErrorResponse errorDetails = new ErrorResponse(
-                (Data) new Date(),
+                 new Date(),
                 HttpStatus.BAD_REQUEST.value(),
                 "Bad Request",
                 ex.getMessage(),
@@ -38,7 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> globalExceptionalHandler(Exception ex, WebRequest request){
         ErrorResponse errorDetails = new ErrorResponse(
-                (Data) new Date(),
+                new Date(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 "Server Error",
                 ex.getMessage(),

@@ -34,23 +34,23 @@ public class TheaterService {
         return theaterDto;
     }
 
-    private TheaterDto getTheaterById(Long id){
+    public TheaterDto getTheaterById(Long id){
         Theater theater = theaterRepository.findById(id)
                 .orElseThrow(()->new ResourcesNotFoundException("Theater not found with id :" + id));
         return mapToDto(theater);
     }
 
-    private List<TheaterDto> getAllTheaters(){
+    public List<TheaterDto> getAllTheaters(){
         List<Theater>theaters = theaterRepository.findAll();
         return theaters.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
-    private List<TheaterDto> getAllTheaterByCity(String city){
+    public List<TheaterDto> getAllTheaterByCity(String city){
         List<Theater>theaters = theaterRepository.findByCity(city);
         return theaters.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
-    private TheaterDto updateTheater(Long id , TheaterDto theaterDto){
+    public TheaterDto updateTheater(Long id , TheaterDto theaterDto){
         Theater theater = theaterRepository.findById(id)
                 .orElseThrow(()->new ResourcesNotFoundException("Theater not found with id :" + id));
         theater.setName(theaterDto.getName());
@@ -61,7 +61,7 @@ public class TheaterService {
         return mapToDto(updateTheater);
     }
 
-    private void deleteTheater(Long id){
+    public void deleteTheater(Long id){
         Theater theater = theaterRepository.findById(id)
                 .orElseThrow(()->new ResourcesNotFoundException("Theater not found with id :" + id));
         theaterRepository.delete(theater);

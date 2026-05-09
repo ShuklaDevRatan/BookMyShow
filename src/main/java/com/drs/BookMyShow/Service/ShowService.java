@@ -2,10 +2,7 @@ package com.drs.BookMyShow.Service;
 
 import com.drs.BookMyShow.Dto.*;
 import com.drs.BookMyShow.Exception.ResourcesNotFoundException;
-import com.drs.BookMyShow.Model.Movie;
-import com.drs.BookMyShow.Model.Screen;
-import com.drs.BookMyShow.Model.Show;
-import com.drs.BookMyShow.Model.ShowSeat;
+import com.drs.BookMyShow.Model.*;
 import com.drs.BookMyShow.Repository.MovieRepository;
 import com.drs.BookMyShow.Repository.ScreenRepository;
 import com.drs.BookMyShow.Repository.ShowRepository;
@@ -47,10 +44,23 @@ public class ShowService {
         show.setEndTime(showDto.getEndTime());
 
         Show savedShow = showRepository.save(show);
-        List<ShowSeat> availableSeats =
-                showSeatRepository.findByShowIdAndStatus(savedShow.getId(), "AVAILABLE");
 
-        return mapToDto(savedShow,availableSeats);
+        List<Seat> seats = screen.getSeats();
+
+        for(Seat seat : seats){
+            ShowSeat showSeat = new ShowSeat();
+            showSeat.setShow(savedShow);
+            showSeat.setSeat(seat);
+            showSeat.setStatus("AVAILABLE");
+            showSeat.setPrice(seat.getBasePrice());
+            showSeatRepository.save(showSeat);
+        }
+        List<ShowSeat> availableSeats =
+                showSeatRepository.findByShowIdAndStatus(
+                        savedShow.getId(),
+                        "AVAILABLE");
+
+        return mapToDto(savedShow, availableSeats);
     }
 
 
